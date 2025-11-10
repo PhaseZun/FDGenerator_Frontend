@@ -1,3 +1,4 @@
+@using iText.StyledXmlParser.Jsoup.Parser
 @model IEnumerable<MyApp.Web.Models.FD.FDModel>
 
 @{
@@ -18,12 +19,12 @@
             <div class="fd-row"><strong>ID:</strong> @fd.Id</div>
             <div class="fd-row"><strong>Amount (₹):</strong> @fd.Amount.ToString("N2")</div>
             <div class="fd-row"><strong>Interest Rate (%):</strong> @fd.InterestRate</div>
-            <div class="fd-row"><strong>Maturity Date:</strong>@fd.MaturityDate</div>
+            <div class="fd-row"><strong>Maturity Date:</strong>@(fd?.MaturityDate?.ToString("dd-MMM-yyyy"))</div>
             <div class="fd-row">
                 <strong>Download:</strong>
-                <a href="@Url.Action("DownloadPdf", "FDList", new { fileName = fd.PdfFileName })"
-                   target="_blank"
-                   title="Download PDF">
+                <a href="@Url.Action("DownloadPdf", "FDList", new { id = fd.Id , token = ViewBag.Token})"
+                target="_blank"
+                title="Download PDF">
                     <img src="~/images/pdf-icon.png" width="25" height="25" alt="PDF" />
                 </a>
             </div>

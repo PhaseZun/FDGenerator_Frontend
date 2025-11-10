@@ -34,7 +34,7 @@ namespace MyApp.Web.Controllers
                 if (!string.IsNullOrEmpty(result.Token))
                {
                   HttpContext.Session.SetString("Token", result.Token);
-                 return RedirectToAction("Index", "FDList");
+                 return RedirectToAction("Index", "FDList", new { token = result.Token });
                }
             }
 
