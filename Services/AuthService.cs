@@ -1,9 +1,6 @@
-    using MyApp.Web.Models.Auth;
-    using System.Net.Http;
-    using System.Net.Http.Json;
-    using System.Threading.Tasks;
-using System.Text.Json; 
-    using System.Net.Http.Json;
+  using MyApp.Web.Models.Auth;
+  using System.Text.Json; 
+
  
 
 namespace MyApp.Web.Services

@@ -42,10 +42,6 @@
               "target": "Package",
               "version": "[2.3.0, )"
             },
-            "Minio": {
-              "target": "Package",
-              "version": "[6.0.5, )"
-            },
             "itext7": {
               "target": "Package",
               "version": "[9.3.0, )"

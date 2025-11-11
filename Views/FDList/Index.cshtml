@@ -22,7 +22,7 @@
             <div class="fd-row"><strong>Maturity Date:</strong>@(fd?.MaturityDate?.ToString("dd-MMM-yyyy"))</div>
             <div class="fd-row">
                 <strong>Download:</strong>
-                <a href="@Url.Action("DownloadPdf", "FDList", new { id = fd.Id , token = ViewBag.Token})"
+                <a href="@Url.Action("DownloadPdf", "FDList", new { id = fd?.Id , token = ViewBag.Token})"
                 target="_blank"
                 title="Download PDF">
                     <img src="~/images/pdf-icon.png" width="25" height="25" alt="PDF" />

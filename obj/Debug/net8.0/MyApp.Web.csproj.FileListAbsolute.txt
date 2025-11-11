@@ -6,7 +6,6 @@ C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\MyApp.Web.runtimeconfig.json
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\MyApp.Web.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\MyApp.Web.pdb
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\CommunityToolkit.HighPerformance.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\itext.barcodes.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\itext.bouncy-castle-connector.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\itext.forms.dll
@@ -20,21 +19,14 @@ C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\itext.svg.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\itext.commons.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Minio.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\Newtonsoft.Json.dll
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\System.IO.Hashing.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\System.IO.Pipelines.dll
-C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\System.Reactive.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\bin\Debug\net8.0\System.Text.Encodings.Web.dll
@@ -65,3 +57,4 @@ C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\obj\Debug\net8.
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\obj\Debug\net8.0\MyApp.Web.pdb
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\obj\Debug\net8.0\MyApp.Web.genruntimeconfig.cache
 C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\obj\Debug\net8.0\ref\MyApp.Web.dll
+C:\Users\Administrator\Desktop\API_FeaturedPDFDownload\MyApp.Web\obj\Debug\net8.0\MyApp.Web.sourcelink.json
