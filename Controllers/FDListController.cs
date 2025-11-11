@@ -18,14 +18,14 @@ namespace MyApp.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string token)
+        public async Task<IActionResult> Index(string token,string userId)
         {
             try
             {
                 _logger.LogInformation("➡️ [Frontend] Calling API to fetch FD list with token: {Token}", token);
 
                 var client = _httpClientFactory.CreateClient();
-                var response = await client.GetAsync($"{ApiBaseUrl}/list/{token}");
+                var response = await client.GetAsync($"{ApiBaseUrl}/list/{userId}/{token}");
 
                 _logger.LogInformation("⬅️ [Backend] Received response: {StatusCode}", response.StatusCode);
 
@@ -52,18 +52,18 @@ namespace MyApp.Web.Controllers
             }
         }
         
-        public async Task<IActionResult> DownloadPdf(int id)
+        public async Task<IActionResult> DownloadPdf(string userId,int fdId,string token)
         {
-            _logger.LogInformation("➡️ [Frontend] Request to download PDF for FD ID: {Id}", id);
+            _logger.LogInformation("➡️ [Frontend] Request to download PDF for FD ID: {fdId}", fdId);
 
 
-            if (id <= 0)
+            if (fdId <= 0)
             {
-                _logger.LogWarning("⚠️ Invalid FD ID: {Id}", id);
+                _logger.LogWarning("⚠️ Invalid FD ID: {fdId}", fdId);
                 return BadRequest("Invalid FD ID.");
             }
 
-            var apiUrl = $"{ApiBaseUrl}/downloadpdf/{id}";
+            var apiUrl = $"{ApiBaseUrl}/downloadpdf/{userId}/{fdId}/{token}";
             _logger.LogInformation("🔗 Calling backend API: {ApiUrl}", apiUrl);
             var handler = new HttpClientHandler
             {
@@ -79,14 +79,14 @@ namespace MyApp.Web.Controllers
 
             if (!response.IsSuccessStatusCode)
             {
-                _logger.LogWarning("⚠️ PDF not found for FD ID: {Id}. Status: {StatusCode}", id, response.StatusCode);
-                return NotFound($"PDF not found for FD ID: {id}");
+                _logger.LogWarning("⚠️ PDF not found for FD ID: {Id}. Status: {StatusCode}", fdId, response.StatusCode);
+                return NotFound($"PDF not found for FD ID: {fdId}");
             }
 
             var pdfBytes = await response.Content.ReadAsByteArrayAsync();
-            var fileName = $"FD_{id}.pdf";
+            var fileName = $"FD_{fdId}.pdf";
 
-            _logger.LogInformation("✅ Successfully downloaded PDF for FD ID: {Id}", id);
+            _logger.LogInformation("✅ Successfully downloaded PDF for FD ID: {Id}", fdId);
             return File(pdfBytes, "application/pdf", fileName);
         }
 

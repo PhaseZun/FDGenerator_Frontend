@@ -16,6 +16,8 @@ namespace MyApp.Web.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            HttpContext.Session.GetString("userId");
+            HttpContext.Session.GetString("Token");
             return View();
         }
 
@@ -32,12 +34,13 @@ namespace MyApp.Web.Controllers
             if (result.Success)
             {
                 if (!string.IsNullOrEmpty(result.Token))
-               {
+                {
+                  HttpContext.Session.SetString("userId", result.userId);
                   HttpContext.Session.SetString("Token", result.Token);
-                 return RedirectToAction("Index", "FDList", new { token = result.Token });
-               }
+                  return RedirectToAction("Index", "FDList", new { token = result.Token , userid=result.userId});
+                }
             }
-
+            
             ViewBag.Message = result.Message;
             Console.WriteLine("Raw API Response:" + request.Username);
             Console.WriteLine("Raw API Response:" + request.Password);

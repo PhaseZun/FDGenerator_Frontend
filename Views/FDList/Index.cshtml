@@ -1,10 +1,15 @@
 @using iText.StyledXmlParser.Jsoup.Parser
 @model IEnumerable<MyApp.Web.Models.FD.FDModel>
 
+
 @{
     ViewData["Title"] = "FD List";
 }
 
+@{
+    var userId = Context.Session.GetString("userId");
+    var token = Context.Session.GetString("Token");
+}
 <h2>Fixed Deposit List</h2>
 
 @if (ViewBag.Token != null)
@@ -16,13 +21,13 @@
     @foreach (var fd in Model)
     {
         <div class="fd-card">
-            <div class="fd-row"><strong>ID:</strong> @fd.Id</div>
+            <div class="fd-row"><strong>ID:</strong> @fd.fdId</div>
             <div class="fd-row"><strong>Amount (₹):</strong> @fd.Amount.ToString("N2")</div>
             <div class="fd-row"><strong>Interest Rate (%):</strong> @fd.InterestRate</div>
             <div class="fd-row"><strong>Maturity Date:</strong>@(fd?.MaturityDate?.ToString("dd-MMM-yyyy"))</div>
             <div class="fd-row">
                 <strong>Download:</strong>
-                <a href="@Url.Action("DownloadPdf", "FDList", new { id = fd?.Id , token = ViewBag.Token})"
+                <a href="@Url.Action("DownloadPdf", "FDList", new { userId= userId ,fdId = fd?.fdId , token = token})"
                 target="_blank"
                 title="Download PDF">
                     <img src="~/images/pdf-icon.png" width="25" height="25" alt="PDF" />

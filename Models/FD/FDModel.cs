@@ -2,7 +2,8 @@ namespace MyApp.Web.Models.FD
 {
     public class FDModel
     {
-        public int Id { get; set; }
+
+        public int fdId { get; set; }
         public string? CustomerName { get; set; }
         public double Amount { get; set; }
         public double InterestRate { get; set; }
