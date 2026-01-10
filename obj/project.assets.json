@@ -5957,19 +5957,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+    "/Users/sushantpawar/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Desktop\\API_FeaturedPDFDownload\\MyApp.Web\\MyApp.Web.csproj",
+      "projectUniqueName": "/Users/sushantpawar/Personal/Projects/FDGenerator_Frontend/MyApp.Web.csproj",
       "projectName": "MyApp.Web",
-      "projectPath": "C:\\Users\\Administrator\\Desktop\\API_FeaturedPDFDownload\\MyApp.Web\\MyApp.Web.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\Desktop\\API_FeaturedPDFDownload\\MyApp.Web\\obj\\",
+      "projectPath": "/Users/sushantpawar/Personal/Projects/FDGenerator_Frontend/MyApp.Web.csproj",
+      "packagesPath": "/Users/sushantpawar/.nuget/packages/",
+      "outputPath": "/Users/sushantpawar/Personal/Projects/FDGenerator_Frontend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/sushantpawar/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -5987,7 +5987,13 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -6021,7 +6027,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.121/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
