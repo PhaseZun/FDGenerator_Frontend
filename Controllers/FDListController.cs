@@ -52,6 +52,7 @@ namespace MyApp.Web.Controllers
             }
         }
         
+        [HttpGet]
         public async Task<IActionResult> DownloadPdf(string userId,int fdId,string token)
         {
             _logger.LogInformation("➡️ [Frontend] Request to download PDF for FD ID: {fdId}", fdId);

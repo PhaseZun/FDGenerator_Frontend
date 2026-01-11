@@ -26,10 +26,12 @@ namespace MyApp.Web.Services
             {
                 //var result = JsonSerializer.Deserialize<LoginResponse>(content);
                 var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
-                return result ?? new LoginResponse { Success = false, Message = "Invalid API response" };
+                return result;
             }
             
-            return new LoginResponse { Success = false, Message = "API call failed" };
+            return new LoginResponse {UserId = 0,
+             Username = null,
+             Token = null};
         }
     }
 }

@@ -21,31 +21,43 @@ namespace MyApp.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Login(LoginRequest request)
+      [HttpPost]
+     public async Task<IActionResult> Login(LoginRequest request)
+    {
+        if (!ModelState.IsValid)
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Message = "Please enter username and password.";
-                return View();
-            }
-
-              var result = await _authService.LoginAsync(request);
-            if (result.Success)
-            {
-                if (!string.IsNullOrEmpty(result.Token))
-                {
-                  HttpContext.Session.SetString("userId", result.userId);
-                  HttpContext.Session.SetString("Token", result.Token);
-                  return RedirectToAction("Index", "FDList", new { token = result.Token , userid=result.userId});
-                }
-            }
-            
-            ViewBag.Message = result.Message;
-            Console.WriteLine("Raw API Response:" + request.Username);
-            Console.WriteLine("Raw API Response:" + request.Password);
+            ViewBag.Message = "Please enter username and password.";
             return View();
-            
         }
+
+        LoginResponse? result;
+        try
+        {
+            result = await _authService.LoginAsync(request);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            ViewBag.Message = ex.Message;
+            return View();
+        }
+
+        // Login failed (no token returned)
+        if (result == null || string.IsNullOrEmpty(result.Token))
+        {
+            ViewBag.Message = "Invalid username or password.";
+            return View();
+        }
+
+        // Login success
+        HttpContext.Session.SetString("UserId", result.UserId.ToString());
+        HttpContext.Session.SetString("Token", result.Token);
+
+        return RedirectToAction(
+            "Index",
+            "FDList",
+            new { token = result.Token, userId = result.UserId }
+        );
+    }
+
     }
 }
