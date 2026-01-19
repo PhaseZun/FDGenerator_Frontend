@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Web.Models.FD;
+using System.Net;
 using System.Text.Json;
 
 namespace MyApp.Web.Controllers
@@ -8,24 +9,30 @@ namespace MyApp.Web.Controllers
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<FDListController> _logger;
-        private const string ApiBaseUrl = "http://localhost:5269/api/FDList";
+        private readonly IConfiguration _configuration;
+        
 
 
-        public FDListController(IHttpClientFactory httpClientFactory, ILogger<FDListController> logger)
+        public FDListController(IHttpClientFactory httpClientFactory, ILogger<FDListController> logger,IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
             _logger = logger;
+            _configuration = configuration;
         }
-
+        
+        
         [HttpGet]
-        public async Task<IActionResult> Index(string token,string userId)
+        public async Task<IActionResult> Index()
         {
+            var token = HttpContext.Session.GetString("Token");
+            var userId = HttpContext.Session.GetString("UserId");
             try
             {
                 _logger.LogInformation("➡️ [Frontend] Calling API to fetch FD list with token: {Token}", token);
 
                 var client = _httpClientFactory.CreateClient();
-                var response = await client.GetAsync($"{ApiBaseUrl}/list/{userId}/{token}");
+                var URL=_configuration["ExternalApis:FDListApiBaseUrl"]+$"list/{userId}/{token}";
+                var response = await client.GetAsync(URL);
 
                 _logger.LogInformation("⬅️ [Backend] Received response: {StatusCode}", response.StatusCode);
 
@@ -37,6 +44,14 @@ namespace MyApp.Web.Controllers
                 }
 
                 var jsonString = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                        {
+                            // 🔴 Token expired
+                            HttpContext.Session.Clear();
+                            return RedirectToAction("Login", "Account");
+                        }
+                }
                 var fdList = JsonSerializer.Deserialize<List<FDModel>>(jsonString, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -63,8 +78,8 @@ namespace MyApp.Web.Controllers
                 _logger.LogWarning("⚠️ Invalid FD ID: {fdId}", fdId);
                 return BadRequest("Invalid FD ID.");
             }
-
-            var apiUrl = $"{ApiBaseUrl}/downloadpdf/{userId}/{fdId}/{token}";
+            var apiUrl=_configuration["ExternalApis:FDListApiBaseUrl"]+$"downloadpdf/{userId}/{fdId}/{token}";
+            //var apiUrl = $"{ApiBaseUrl}/downloadpdf/{userId}/{fdId}/{token}";
             _logger.LogInformation("🔗 Calling backend API: {ApiUrl}", apiUrl);
             var handler = new HttpClientHandler
             {
@@ -76,6 +91,14 @@ namespace MyApp.Web.Controllers
             using var client = new HttpClient(handler);
 
             var response = await client.GetAsync(apiUrl);
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                        {
+                            // 🔴 Token expired
+                            HttpContext.Session.Clear();
+                            return RedirectToAction("Login", "Account");
+                        }
+                }
             _logger.LogInformation("⬅️ [Backend] Received response for PDF download: {StatusCode}", response.StatusCode);
 
             if (!response.IsSuccessStatusCode)

@@ -54,8 +54,7 @@ namespace MyApp.Web.Controllers
 
         return RedirectToAction(
             "Index",
-            "FDList",
-            new { token = result.Token, userId = result.UserId }
+            "FDList"
         );
     }
 
