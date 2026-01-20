@@ -26,6 +26,11 @@ namespace MyApp.Web.Controllers
         {
             var token = HttpContext.Session.GetString("Token");
             var userId = HttpContext.Session.GetString("UserId");
+            if (string.IsNullOrEmpty(token))
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "Account");
+            }
             try
             {
                 _logger.LogInformation("➡️ [Frontend] Calling API to fetch FD list with token: {Token}", token);
@@ -35,23 +40,21 @@ namespace MyApp.Web.Controllers
                 var response = await client.GetAsync(URL);
 
                 _logger.LogInformation("⬅️ [Backend] Received response: {StatusCode}", response.StatusCode);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    _logger.LogWarning("⚠️ Unable to fetch FD list from API. Status: {StatusCode}", response.StatusCode);
-                    ViewBag.ErrorMessage = "Unable to fetch FD list from API.";
-                    return View(new List<FDModel>());
-                }
-
-                var jsonString = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode == HttpStatusCode.Unauthorized)
                 {
                         {
-                            // 🔴 Token expired
                             HttpContext.Session.Clear();
                             return RedirectToAction("Login", "Account");
                         }
                 }
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogWarning("⚠️ Unable to fetch FD list from API. Status: {StatusCode}", response.StatusCode);
+                    
+                    return RedirectToAction("Login", "Account");
+                }
+
+                var jsonString = await response.Content.ReadAsStringAsync();
                 var fdList = JsonSerializer.Deserialize<List<FDModel>>(jsonString, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
